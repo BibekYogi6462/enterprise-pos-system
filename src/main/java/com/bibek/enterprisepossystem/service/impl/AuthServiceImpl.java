@@ -1,7 +1,7 @@
 package com.bibek.enterprisepossystem.service.impl;
 
 import com.bibek.enterprisepossystem.configuration.JwtProvider;
-import com.bibek.enterprisepossystem.configuration.domain.UserRole;
+import com.bibek.enterprisepossystem.domain.UserRole;
 import com.bibek.enterprisepossystem.exceptions.UserException;
 import com.bibek.enterprisepossystem.mapper.UserMapper;
 import com.bibek.enterprisepossystem.model.User;
@@ -12,20 +12,18 @@ import com.bibek.enterprisepossystem.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
 
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
-    private final UserRepository userRepository;  // Added final keyword
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
     private final CustomUserImplementation customUserImplementation;
@@ -41,7 +39,7 @@ public class AuthServiceImpl implements AuthService {
         // Handle role - set default if null
         UserRole role = userDto.getRole();
         if(role == null) {
-            role = UserRole.ROLE_USER; // Set default role
+            role = UserRole.ROLE_CASHIER; // FIXED: Using ROLE_CASHIER as default since ROLE_USER doesn't exist
         }
 
         // Prevent admin signup
@@ -58,11 +56,10 @@ public class AuthServiceImpl implements AuthService {
         newUser.setPhone(userDto.getPhone());
         newUser.setCreatedAt(LocalDateTime.now());
         newUser.setUpdatedAt(LocalDateTime.now());
-        // Don't set lastLogin here, it will be updated on login
 
         User savedUser = userRepository.save(newUser);
 
-        // CORRECT WAY: Load UserDetails and create Authentication
+        // Load UserDetails and create Authentication
         UserDetails userDetails = customUserImplementation.loadUserByUsername(savedUser.getEmail());
         Authentication authentication =
                 new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

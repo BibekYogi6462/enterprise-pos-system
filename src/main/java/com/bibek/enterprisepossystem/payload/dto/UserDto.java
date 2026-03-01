@@ -1,10 +1,7 @@
 package com.bibek.enterprisepossystem.payload.dto;
 
-import com.bibek.enterprisepossystem.configuration.domain.UserRole;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import com.bibek.enterprisepossystem.domain.UserRole;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Email;
 import lombok.*;
 
 import java.time.LocalDateTime;
