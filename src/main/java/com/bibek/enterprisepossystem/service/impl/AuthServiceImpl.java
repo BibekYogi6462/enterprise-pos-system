@@ -12,49 +12,63 @@ import com.bibek.enterprisepossystem.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
-    private UserRepository userRepository;
+
+    private final UserRepository userRepository;  // Added final keyword
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
     private final CustomUserImplementation customUserImplementation;
 
-
     @Override
     public AuthResponse signup(UserDto userDto) throws UserException {
-        User user = userRepository.findByEmail(userDto.getEmail());
-        if(user!=null){
+        // Check if email already exists
+        User existingUser = userRepository.findByEmail(userDto.getEmail());
+        if(existingUser != null) {
             throw new UserException("Email Id already Registered");
         }
-        if(userDto.getRole().equals(UserRole.ROLE_ADMIN)){
-            throw new UserException("Role Admin is not allowed");
 
+        // Handle role - set default if null
+        UserRole role = userDto.getRole();
+        if(role == null) {
+            role = UserRole.ROLE_USER; // Set default role
         }
+
+        // Prevent admin signup
+        if(role.equals(UserRole.ROLE_ADMIN)) {
+            throw new UserException("Role Admin is not allowed");
+        }
+
+        // Create new user
         User newUser = new User();
         newUser.setEmail(userDto.getEmail());
         newUser.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        newUser.setRole(userDto.getRole());
+        newUser.setRole(role);
         newUser.setFullName(userDto.getFullName());
         newUser.setPhone(userDto.getPhone());
-        newUser.setLastLogin(LocalDateTime.now());
         newUser.setCreatedAt(LocalDateTime.now());
         newUser.setUpdatedAt(LocalDateTime.now());
-
+        // Don't set lastLogin here, it will be updated on login
 
         User savedUser = userRepository.save(newUser);
+
+        // CORRECT WAY: Load UserDetails and create Authentication
+        UserDetails userDetails = customUserImplementation.loadUserByUsername(savedUser.getEmail());
         Authentication authentication =
-                new UsernamePasswordAuthenticationToken(userDto.getEmail(), userDto.getPassword());
+                new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         String jwt = jwtProvider.generateToken(authentication);
-
 
         AuthResponse authResponse = new AuthResponse();
         authResponse.setJwt(jwt);
@@ -64,7 +78,41 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public AuthResponse login(UserDto userDto) {
-        return null;
+    public AuthResponse login(UserDto userDto) throws UserException {
+        String email = userDto.getEmail();
+        String password = userDto.getPassword();
+
+        Authentication authentication = authenticate(email, password);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        String jwt = jwtProvider.generateToken(authentication);
+
+        User user = userRepository.findByEmail(email);
+        if(user == null) {
+            throw new UserException("User not found");
+        }
+
+        user.setLastLogin(LocalDateTime.now());
+        user.setUpdatedAt(LocalDateTime.now());
+        userRepository.save(user);
+
+        AuthResponse authResponse = new AuthResponse();
+        authResponse.setJwt(jwt);
+        authResponse.setMessage("Logged In Successfully");
+        authResponse.setUser(UserMapper.toDTO(user));
+        return authResponse;
+    }
+
+    private Authentication authenticate(String email, String password) throws UserException {
+        UserDetails userDetails = customUserImplementation.loadUserByUsername(email);
+        if(userDetails == null) {
+            throw new UserException("Email Id doesn't exist");
+        }
+
+        if(!passwordEncoder.matches(password, userDetails.getPassword())) {
+            throw new UserException("Password doesn't match");
+        }
+
+        return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 }
