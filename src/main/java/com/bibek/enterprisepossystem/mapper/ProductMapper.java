@@ -1,5 +1,6 @@
 package com.bibek.enterprisepossystem.mapper;
 
+import com.bibek.enterprisepossystem.model.Category;
 import com.bibek.enterprisepossystem.model.Product;
 import com.bibek.enterprisepossystem.model.Store;
 import com.bibek.enterprisepossystem.payload.dto.ProductDto;
@@ -15,6 +16,7 @@ public class ProductMapper {
                 .mrp(product.getMrp())
                 .sellingPrice(product.getSellingPrice())
                 .brand(product.getBrand())
+                .category(CategoryMapper.toDTO(product.getCategory()))
                 .storeId(product.getStore()!=null?product.getStore().getId():null)
                 .image(product.getImage())
                 .createdAt(product.getCreatedAt())
@@ -24,9 +26,10 @@ public class ProductMapper {
 
     }
 
-    public static Product toEntity(ProductDto productDto, Store store){
+    public static Product toEntity(ProductDto productDto, Store store, Category category){
          return Product.builder()
                  .name(productDto.getName())
+                 .store(store)
                  .sku(productDto.getSku())
                  .description(productDto.getDescription())
                  .mrp(productDto.getMrp())

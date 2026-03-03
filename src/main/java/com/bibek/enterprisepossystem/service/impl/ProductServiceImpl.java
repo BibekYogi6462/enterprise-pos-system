@@ -1,10 +1,12 @@
 package com.bibek.enterprisepossystem.service.impl;
 
 import com.bibek.enterprisepossystem.mapper.ProductMapper;
+import com.bibek.enterprisepossystem.model.Category;
 import com.bibek.enterprisepossystem.model.Product;
 import com.bibek.enterprisepossystem.model.Store;
 import com.bibek.enterprisepossystem.model.User;
 import com.bibek.enterprisepossystem.payload.dto.ProductDto;
+import com.bibek.enterprisepossystem.repository.CategoryRepository;
 import com.bibek.enterprisepossystem.repository.ProductRepository;
 import com.bibek.enterprisepossystem.repository.StoreRepository;
 import com.bibek.enterprisepossystem.service.ProductService;
@@ -22,6 +24,7 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final StoreRepository storeRepository;
+    private final CategoryRepository categoryRepository;
 
 
 
@@ -33,8 +36,11 @@ public class ProductServiceImpl implements ProductService {
                 ()-> new Exception("Store not found")
 
         );
+        Category category = categoryRepository.findById(productDto.getCategoryId()).orElseThrow(
+                ()->new Exception("Category not found")
+        );
 
-        Product product = ProductMapper.toEntity(productDto, store);
+        Product product = ProductMapper.toEntity(productDto, store, category);
         Product savedProduct = productRepository.save(product);
         return  ProductMapper.toDTO(savedProduct);
 
@@ -45,6 +51,8 @@ public class ProductServiceImpl implements ProductService {
         Product product = productRepository.findById(id).orElseThrow(
                 ()-> new Exception("product not found")
         );
+
+
         product.setName(productDto.getName());
         product.setDescription(productDto.getDescription());
         product.setSku(productDto.getSku());
@@ -53,7 +61,18 @@ public class ProductServiceImpl implements ProductService {
        product.setSellingPrice(productDto.getSellingPrice());
        product.setBrand(product.getBrand());
        product.setUpdatedAt(LocalDateTime.now());
-       Product savedProduct = productRepository.save(product);
+
+        if(productDto.getCategoryId()!=null){
+            Category category = categoryRepository.findById(productDto.getCategoryId()).orElseThrow(
+                    () -> new Exception("Catgory Not Found")
+            );
+            product.setCategory(category);
+
+        }
+
+
+
+        Product savedProduct = productRepository.save(product);
        return ProductMapper.toDTO(savedProduct);
     }
 
