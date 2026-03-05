@@ -39,7 +39,7 @@ public class AuthServiceImpl implements AuthService {
         // Handle role - set default if null
         UserRole role = userDto.getRole();
         if(role == null) {
-            role = UserRole.ROLE_CASHIER; // FIXED: Using ROLE_CASHIER as default since ROLE_USER doesn't exist
+            role = UserRole.ROLE_BRANCH_CASHIER; // FIXED: Using ROLE_CASHIER as default since ROLE_USER doesn't exist
         }
 
         // Prevent admin signup
