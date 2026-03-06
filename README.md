@@ -1,7 +1,13 @@
-Enterprise POS System - Backend API
+# 🏪 Enterprise POS System - Backend API
 
-📋 Overview
-A complete production-ready Enterprise SaaS Point of Sale (POS) System Backend built with Java Spring Boot. This REST API powers multi-tenant POS applications used in malls, supermarkets, and retail chains worldwide.
+<p align="center">
+  <img src="https://img.shields.io/badge/Java%20Spring%20Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white"/>
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white"/>
+  <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=json-web-tokens&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white"/>
+</p>
+
+---
 
 ✅ Full Backend Implementation Complete - 14+ API modules fully developed and tested
 
@@ -45,158 +51,124 @@ Here are some sample API test screenshots. You can test all endpoints using Post
 
 > ✨ **Note:** These are just sample screenshots. All 14+ API modules are fully functional and tested including Product, Inventory, Order, Refund, Employee, Customer, Payment, and Dashboard APIs.
 
-🚀 Complete API Modules Implemented
-🔐 Authentication & User Management
-User Signup
+---
+
+## 🚀 API Modules
+
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+
+### 🔐 Authentication
+- User Signup
+- User Login
+- Profile Management
+- User CRUD Operations
+
+### 🏢 Store
+- Store Creation (Admin)
+- Store Admin Signup
+- Store Details Update
+- Store Retrieval
+
+### 📦 Category
+- Category Creation
+- Get Categories
+- Category Update/Delete
+- Category by Store
+
+### 🏬 Branch
+- Branch Creation
+- Get Branches
+- Branch Update/Delete
+- Branches by Store
+
+### 📊 Product
+- Product Creation
+- Product Retrieval
+- Product Update/Delete
+- Stock Management
+
+### 📦 Inventory
+- Add Inventory
+- Update Inventory
+- Track Stock Levels
+- Low Stock Alerts
+
+### 👥 Employee
+- Employee Registration
+- Roles Assignment
+- Employee Details
+- Shift Management
+
+### 👤 Customer
+- Customer Registration
+- Customer Details
+- Loyalty Points
+- Purchase History
+
+### 🛒 Order
+- Create Order
+- Process Payment
+- Order History
+- Invoice Generation
+
+### 💰 Refund
+- Process Refunds
+- Refund History
+- Payment Reversal
+
+### 📈 Reports
+- Daily Sales Report
+- Shift Summary
+- Employee Performance
+- Branch Analytics
+
+### 💳 Payment
+- Razorpay Integration
+- Stripe Integration
+- Multiple Methods
+- Gateway Switching
+
+### 🏪 Multi-Store
+- Cross-store Management
+- Centralized Control
+- Store Metrics
+
+### 📱 Dashboard
+- Cashier Terminal
+- Branch Manager
+- Store Admin Panel
+- Real-time Analytics
+
+</div>
+
+---
+
+## 🛠️ Technology Stack
+
+| Category | Technologies |
+|----------|-------------|
+| **Language** | Java 17 |
+| **Framework** | Spring Boot 3.x |
+| **Security** | Spring Security, JWT |
+| **Database** | MySQL, JPA/Hibernate |
+| **Build Tool** | Maven |
+| **Utilities** | Lombok |
+| **Testing** | Postman |
 
-User Login
+---
 
-Profile Management
+## 🚦 Getting Started
 
-User CRUD Operations
+### Prerequisites
+✅ JDK 17 or later
+✅ MySQL Server 8.0+
+✅ Maven 3.8+
 
-🏢 Store Management
-Store Creation (Admin)
+text
 
-Store Admin Signup
+### Quick Setup
 
-Store Details Update
-
-Store Retrieval with Pagination
-
-📦 Category Management
-Category Creation
-
-Get Categories
-
-Category Update & Delete
-
-Category by Store
-
-🏬 Branch Management
-Branch Creation
-
-Get Branches
-
-Branch Update & Delete
-
-Branches by Store
-
-📊 Product Management
-Product Creation
-
-Product Retrieval
-
-Product Update & Delete
-
-Products by Category/Branch
-
-Stock Management
-
-📦 Inventory Management
-Add Inventory
-
-Update Inventory
-
-Track Stock Levels
-
-Low Stock Alerts
-
-👥 Employee Management
-Employee Registration
-
-Employee Roles Assignment
-
-Employee Details
-
-Shift Management
-
-👤 Customer Management
-Customer Registration
-
-Customer Details
-
-Loyalty Points
-
-Purchase History
-
-🛒 Order Management
-Create Order
-
-Process Payment
-
-Order History
-
-Invoice Generation
-
-💰 Refund Management
-Process Refunds
-
-Refund History
-
-Payment Reversal
-
-📈 Shift Reports & Analytics
-Daily Sales Report
-
-Shift Summary
-
-Employee Performance
-
-Branch-wise Analytics
-
-💳 Payment Integration
-Razorpay Integration
-
-Stripe Integration
-
-Multiple Payment Methods
-
-Payment Gateway Switching
-
-🏪 Multi-Store Operations
-Cross-store Management
-
-Centralized Control
-
-Store Performance Metrics
-
-📱 Dashboard APIs
-Cashier Terminal APIs
-
-Branch Manager Dashboard
-
-Store Admin Panel
-
-Real-time Analytics
-
-🛠️ Technology Stack
-Java 17 - Programming language
-
-Spring Boot 3.x - Application framework
-
-Spring Security + JWT - Authentication & authorization
-
-Spring Data JPA/Hibernate - Database operations
-
-MySQL - Primary database
-
-Maven - Dependency management
-
-Lombok - Boilerplate code reduction
-
-Postman - API testing
-
-🚦 Getting Started
-Prerequisites
-JDK 17 or later
-
-MySQL Server 8.0+
-
-Maven 3.8+
-
-Quick Setup
-bash
+```bash
 # Clone the repository
 git clone https://github.com/yourusername/enterprise-pos-backend.git
 
@@ -209,61 +181,36 @@ mvn clean install
 
 # Run the application
 mvn spring-boot:run
-The API will be available at: http://localhost:8080/api
+📌 API Base URL: http://localhost:8080/api
 
 🔒 Security Features
-JWT-based authentication
-
-Role-based access control (ADMIN, STORE_ADMIN, BRANCH_MANAGER, CASHIER)
-
-Password encryption with BCrypt
-
-Request validation
-
-CORS configuration
-
-📝 Sample API Request
-json
-POST /api/auth/login
-{
-  "email": "admin@example.com",
-  "password": "password123"
-}
-Sample Response:
-
-json
-{
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "type": "Bearer",
-  "id": 1,
-  "name": "Admin User",
-  "email": "admin@example.com",
-  "role": "ADMIN"
-}
-
+Feature	Description
+Authentication	JWT-based with token expiration
+Authorization	Role-based (ADMIN, STORE_ADMIN, BRANCH_MANAGER, CASHIER)
+Encryption	BCrypt password hashing
+Validation	Request validation & CORS config
 
 🧪 Testing with Postman
-Import the Postman collection to test all endpoints:
+📥 Download the Postman collection from repository
 
-Download the Postman collection from the repository
+📤 Import into Postman
 
-Import into Postman
+⚙️ Set up environment variables
 
-Set up environment variables
-
-Start testing APIs in sequence
+✅ Start testing APIs in sequence
 
 🤝 Contributing
-Contributions are welcome! Feel free to submit a Pull Request.
-
 Fork the repository
 
-Create your feature branch
+Create feature branch (git checkout -b feature/AmazingFeature)
 
-Commit your changes
+Commit changes (git commit -m 'Add AmazingFeature')
 
-Push to the branch
+Push to branch (git push origin feature/AmazingFeature)
 
 Open a Pull Request
+
+⭐ Support
+If you find this project helpful, please give it a ⭐ on GitHub!
 
 
