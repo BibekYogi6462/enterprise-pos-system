@@ -5,16 +5,21 @@ A complete production-ready Enterprise SaaS Point of Sale (POS) System Backend b
 
 ✅ Full Backend Implementation Complete - 14+ API modules fully developed and tested
 
-📸 API Testing - Quick Preview
+## 📸 API Testing - Quick Preview
+
 Here are some sample API test screenshots. You can test all endpoints using Postman collection.
 
-Authentication	Store Management
-https://./screenshots/auth-signup.jpg	https://./screenshots/store-creation.jpg
-User Signup API	Store Creation API
-Category Management	Branch Management
-https://./screenshots/category-create.jpg	https://./screenshots/branch-create.jpg
-Create Category API	Create Branch API
-📌 Note: These are just sample screenshots. All 14+ API modules are fully functional and tested.
+| Authentication | Store Management |
+|:---:|:---:|
+| <img src="./screenshots/auth-signup.jpg" alt="User Signup" width="400"/> | <img src="./screenshots/store-creation.jpg" alt="Store Creation" width="400"/> |
+| *User Signup API* | *Store Creation API* |
+
+| Category Management | Branch Management |
+|:---:|:---:|
+| <img src="./screenshots/category-create.jpg" alt="Category Create" width="400"/> | <img src="./screenshots/branch-create.jpg" alt="Branch Create" width="400"/> |
+| *Create Category API* | *Create Branch API* |
+
+> ✨ **Note:** These are just sample screenshots. All 14+ API modules are fully functional and tested.
 
 🚀 Complete API Modules Implemented
 🔐 Authentication & User Management
@@ -236,3 +241,4 @@ Commit your changes
 Push to the branch
 
 Open a Pull Request
+
