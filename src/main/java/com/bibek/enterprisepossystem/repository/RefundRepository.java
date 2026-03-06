@@ -23,5 +23,5 @@ public interface RefundRepository extends JpaRepository<Refund, Long> {
     List<Refund> findByBranchId(Long id);
 
 
-    List<RefundDto> getRefundByCashierAndCreatedAtBetween();
+//    List<RefundDto> getRefundByCashierAndCreatedAtBetween();
 }
