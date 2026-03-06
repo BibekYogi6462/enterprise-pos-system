@@ -1,18 +1,20 @@
 Enterprise POS System - Backend API
-https://img.shields.io/badge/Java%2520Spring%2520Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white
-https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white
-https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=json-web-tokens&logoColor=white
-https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white
 
 📋 Overview
 A complete production-ready Enterprise SaaS Point of Sale (POS) System Backend built with Java Spring Boot. This REST API powers multi-tenant POS applications used in malls, supermarkets, and retail chains worldwide.
 
-✅ Full Backend Implementation Complete - 14+ API modules fully developed
+✅ Full Backend Implementation Complete - 14+ API modules fully developed and tested
 
-📸 API Testing Screenshots
-https://image.png
+📸 API Testing - Quick Preview
+Here are some sample API test screenshots. You can test all endpoints using Postman collection.
 
-Complete Postman API testing collection showing all implemented endpoints
+Authentication	Store Management
+https://./screenshots/auth-signup.jpg	https://./screenshots/store-creation.jpg
+User Signup API	Store Creation API
+Category Management	Branch Management
+https://./screenshots/category-create.jpg	https://./screenshots/branch-create.jpg
+Create Category API	Create Branch API
+📌 Note: These are just sample screenshots. All 14+ API modules are fully functional and tested.
 
 🚀 Complete API Modules Implemented
 🔐 Authentication & User Management
@@ -169,12 +171,16 @@ bash
 # Clone the repository
 git clone https://github.com/yourusername/enterprise-pos-backend.git
 
+# Navigate to project
+cd enterprise-pos-backend
+
 # Configure database in application.yml
 # Build the application
 mvn clean install
 
 # Run the application
 mvn spring-boot:run
+The API will be available at: http://localhost:8080/api
 
 🔒 Security Features
 JWT-based authentication
@@ -194,11 +200,39 @@ POST /api/auth/login
   "email": "admin@example.com",
   "password": "password123"
 }
+Sample Response:
+
+json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "type": "Bearer",
+  "id": 1,
+  "name": "Admin User",
+  "email": "admin@example.com",
+  "role": "ADMIN"
+}
+
+
+🧪 Testing with Postman
+Import the Postman collection to test all endpoints:
+
+Download the Postman collection from the repository
+
+Import into Postman
+
+Set up environment variables
+
+Start testing APIs in sequence
+
 🤝 Contributing
 Contributions are welcome! Feel free to submit a Pull Request.
 
-⭐ Support
-If you find this project helpful, please give it a ⭐ on GitHub!
+Fork the repository
 
-Happy Coding! 🚀
+Create your feature branch
 
+Commit your changes
+
+Push to the branch
+
+Open a Pull Request
