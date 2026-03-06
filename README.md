@@ -9,17 +9,41 @@ A complete production-ready Enterprise SaaS Point of Sale (POS) System Backend b
 
 Here are some sample API test screenshots. You can test all endpoints using Postman collection.
 
-| Authentication | Store Management |
+### 🔐 Authentication APIs
+| | |
 |:---:|:---:|
-| <img src="./screenshots/auth-signup.jpg" alt="User Signup" width="400"/> | <img src="./screenshots/store-creation.jpg" alt="Store Creation" width="400"/> |
-| *User Signup API* | *Store Creation API* |
+| <img src="./screenshots/auth-signup.jpg" alt="User Signup" width="400"/> | <img src="./screenshots/auth-login.jpg" alt="User Login" width="400"/> |
+| *User Signup API* | *User Login API* |
+| <img src="./screenshots/user-profile-get.jpg" alt="User Profile" width="400"/> | |
+| *Get User Profile API* | |
 
-| Category Management | Branch Management |
+---
+
+### 🏢 Store Management APIs
+| | |
 |:---:|:---:|
-| <img src="./screenshots/category-create.jpg" alt="Category Create" width="400"/> | <img src="./screenshots/branch-create.jpg" alt="Branch Create" width="400"/> |
-| *Create Category API* | *Create Branch API* |
+| <img src="./screenshots/store-creation.jpg" alt="Store Creation" width="400"/> | <img src="./screenshots/store-admin-signup.jpg" alt="Store Admin Signup" width="400"/> |
+| *Store Creation API* | *Store Admin Signup API* |
+| <img src="./screenshots/store-update.jpg" alt="Store Update" width="400"/> | |
+| *Store Update API* | |
 
-> ✨ **Note:** These are just sample screenshots. All 14+ API modules are fully functional and tested.
+---
+
+### 📦 Category Management APIs
+| | |
+|:---:|:---:|
+| <img src="./screenshots/category-create.jpg" alt="Category Create" width="400"/> | <img src="./screenshots/category-get.jpg" alt="Get Categories" width="400"/> |
+| *Create Category API* | *Get Categories API* |
+
+---
+
+### 🏬 Branch Management APIs
+| | |
+|:---:|:---:|
+| <img src="./screenshots/branch-create.jpg" alt="Branch Create" width="400"/> | <img src="./screenshots/branch-get.jpg" alt="Get Branches" width="400"/> |
+| *Create Branch API* | *Get Branches API* |
+
+> ✨ **Note:** These are just sample screenshots. All 14+ API modules are fully functional and tested including Product, Inventory, Order, Refund, Employee, Customer, Payment, and Dashboard APIs.
 
 🚀 Complete API Modules Implemented
 🔐 Authentication & User Management
@@ -241,4 +265,5 @@ Commit your changes
 Push to the branch
 
 Open a Pull Request
+
 
