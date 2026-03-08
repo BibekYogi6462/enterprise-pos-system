@@ -8,8 +8,8 @@
 </p>
 
 ---
-
 ✅ Full Backend Implementation Complete - 14+ API modules fully developed and tested
+Multi-Store Retail Management Backend – A scalable backend system built with Java 17 and Spring Boot that manages stores, branches, products, inventory, employees, customers, and orders. It includes JWT-based authentication, role-based access control, payment gateway integration (Razorpay/Stripe), refund handling, and real-time analytics dashboards. The system supports multi-store management with centralized reporting and sales analytics, built using Spring Security, JPA/Hibernate, and MySQL, with 14+ fully implemented REST API modules tested using Postman.
 
 ## 📸 API Testing - Quick Preview
 
@@ -212,5 +212,6 @@ Open a Pull Request
 
 ⭐ Support
 If you find this project helpful, please give it a ⭐ on GitHub!
+
 
 
